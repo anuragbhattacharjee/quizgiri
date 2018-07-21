@@ -1,0 +1,14 @@
+{
+  "name": "quizgiri",
+  "version": "1.0.0",
+  "description": "node server for quizgiri app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anurag Bhattacharjee",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.1.0"
+  }
+}
