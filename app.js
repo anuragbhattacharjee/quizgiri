@@ -3,7 +3,7 @@ var router = express.Router();
 const app = express();
 var mongojs = require('mongojs');
 
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
 
 var MongoClient = require('mongodb').MongoClient;
 
