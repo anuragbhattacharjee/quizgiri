@@ -1,6 +1,6 @@
 const express = require("express");
 var  cors = require('cors');
-var path = require('path');
+var path = require('path');  // works with file system path
 var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
 
@@ -9,12 +9,24 @@ const port = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 
+var index = require('./routes/index');
+
 var db = mongojs("mongodb://anurag:anurag09@ds145921.mlab.com:45921/quizgiri", ['testcollection']);
  
 //View Engine
-app.set('views', path.join(__dirname,'views'));
+
+// path to the views : 
+app.set('views', path.join(__dirname,'quizgiri-clientapp/src'));
+
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
+
+//Set Static Folder to store the angular app
+app.use(express.static(path.join(__dirname, 'quizgiri-clientapp')));
+
+//Body Parser MiddleWare
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : false}));
 
 app.use('/', index);
 
