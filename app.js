@@ -1,18 +1,23 @@
 const express = require("express");
-var router = express.Router();
-const app = express();
+var  cors = require('cors');
+var path = require('path');
+var bodyParser = require('body-parser');
 var mongojs = require('mongojs');
 
 const port = process.env.PORT || 5000;
 
-var MongoClient = require('mongodb').MongoClient;
-
-var uri = "mongodb+srv://anurag:quizgiri@cluster0-3b5xj.mongodb.net/test?retryWrites=true";
+const app = express();
+app.use(cors());
 
 var db = mongojs("mongodb://anurag:anurag09@ds145921.mlab.com:45921/quizgiri", ['testcollection']);
-
-var mydb;
  
+//View Engine
+app.set('views', path.join(__dirname,'views'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+app.use('/', index);
+
 //Get All Tasks
 app.get('/tasks', function(req, res, next){
     console.log(db);
@@ -24,37 +29,6 @@ app.get('/tasks', function(req, res, next){
     });
 });
 
-// MongoClient.connect(uri, function (err, client) {
-//     if (err) console.log("Some error has occured : ", err);
-//     mydb = client.db("quizgiri")
-
-
-//     mydb.collection('testcollection').find({}).toArray((err, arr) => {
-//         console.log(arr);
-//     });
-// });
-
-
-
-// app.get('/', (req, res) => {
-//     mydb.collection('testcollection').find({}).toArray((err, arr) => {
-//         if (err) {
-//             res.send(err)
-//         }
-//         //let str = `name: ${arr.name}`;
-//         res.send(arr[0].name);
-//     });
-
-// });
-
-// app.get('/', (req, res) => { 
-//     collection.find((err, tasks) => {
-//         if(err){
-//             res.send(err)
-//         }
-//         console.log(tasks)
-//     });
-// });
 
 // process.on('SIGINT', function () {
 //     mongoose.connection.close(function () {
