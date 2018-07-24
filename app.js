@@ -9,7 +9,7 @@ const app = express();
 // after the code that uses bodyParser and other cool stuff
 var originsWhitelist = [
     'http://localhost:4200',      //this is my front-end url for development
-     'https://quizgiri.herokuapp.com/'
+     'https://quizgiri-clientapp.herokuapp.com/'
   ];
   var corsOptions = {
     origin: function(origin, callback){
@@ -49,7 +49,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.use('/', index);
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'quizgiri-clientapp/dist'));
+    res.sendFile(path.join(__dirname, 'views'));
 });
 
 //Get All Tasks
