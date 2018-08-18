@@ -12,11 +12,13 @@ const express = require('express'),
 
 router.get('/categories', categorys.getCategorys);
 router.get('/category/:id', categorys.getCategory);
+router.delete('/category/:id', categorys.deleteCategory);
 router.get('/detailCategories', categorys.getTopicsInCatgories);
 router.post('/category/create', categorys.createCategory);
 
 router.get('/topics', topics.getTopics);
 router.post('/topic/create', topics.createTopic);
+router.delete('/topic/:id', topics.deleteTopic);
 router.get('/detailTopics', topics.getDetailsTopics);
 
 router.post('/question/create', question.createQuestion);

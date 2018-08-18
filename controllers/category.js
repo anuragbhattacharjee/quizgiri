@@ -41,7 +41,7 @@ var getTopicsInCatgories = function (req, res) {
             res.status(500).json(err);
             return;
         }
-        console.log(result);
+        // console.log(result);
         res.status(200).json(result);
     });
 }
@@ -58,16 +58,17 @@ var createCategory = function(req, res){
     });
 }
 
-// var removePost = function(req, res) {
-//     Post.findByIdAndRemove(req.params.id, (err, post) => {
-//       if (err) { res.send(500, err); }
-//       res.json(200, {'removed': true});
-//     });
-//   };
+var deleteCategory = function(req, res) {
+    Category.findByIdAndRemove(req.params.id, (err, post) => {
+      if (err) { res.status(500).json(err); }
+      res.status(200).json({'post': post, 'removed': true});
+    });
+  };
 
 module.exports = {
     getCategory,     
     getCategorys,
     getTopicsInCatgories,
-    createCategory
+    createCategory,
+    deleteCategory
 };

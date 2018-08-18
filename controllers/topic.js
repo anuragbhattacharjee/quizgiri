@@ -63,9 +63,17 @@ var createTopic = function(req, res){
     });
 }
 
+var deleteTopic = function(req, res) {
+    Topic.findByIdAndRemove(req.params.id, (err, post) => {
+      if (err) { res.status(500).json(err); }
+      res.status(200).json({'post': post, 'removed': true});
+    });
+  };
+
 module.exports = {
     getTopic,
     getTopics,
     getDetailsTopics,
-    createTopic
+    createTopic,
+    deleteTopic
 };   
