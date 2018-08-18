@@ -69,7 +69,7 @@ var deleteTopic = function(req, res) {
       res.status(200).json({'post': post, 'removed': true});
     });
   };
-
+    
 module.exports = {
     getTopic,
     getTopics,
