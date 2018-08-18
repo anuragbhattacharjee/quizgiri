@@ -13,7 +13,8 @@ var UserSchema   = new Schema({
     password: String,
     image_url: String,
     location: String,
-    about_me: String
+    about_me: String,
+    isVarified: Boolean
 });
 
 module.exports = mongoose.model('user', UserSchema);
